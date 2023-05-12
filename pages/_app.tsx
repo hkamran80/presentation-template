@@ -7,13 +7,15 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { presentationConfiguration } from "@/slides/configuration";
 import { NextSeo } from "next-seo";
+import Script from "next/script";
 
 export default function App({ Component, pageProps }: AppProps) {
     const isClient = useIsClient();
 
     if (isClient) {
         return (
-            <ModeProvider>
+            <>
+                    <ModeProvider>
                 <CurrentSlideProvider>
                     <AnimatePresence mode="wait">
                         <Head>
@@ -61,6 +63,19 @@ export default function App({ Component, pageProps }: AppProps) {
                     </AnimatePresence>
                 </CurrentSlideProvider>
             </ModeProvider>
+
+            {process.env.NODE_ENV === "development" ||
+            typeof window === "undefined" ? (
+                ""
+            ) : (
+                <Script
+                    async
+                    defer
+                    data-website-id="bcc044a5-d319-4e4d-8578-290eb68f9bde"
+                    src="https://umami.unisontech.org/script.js"
+                />
+            )}
+            </>
         );
     } else {
         return <Component {...pageProps} />;
