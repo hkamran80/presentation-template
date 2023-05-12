@@ -1,18 +1,38 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+    content: [
+        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+        "./components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./slides/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ["Nunito Sans", ...defaultTheme.fontFamily.sans],
+                serif: [...defaultTheme.fontFamily.serif],
+                mono: [...defaultTheme.fontFamily.mono],
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        "code::before": {
+                            content: "",
+                        },
+                        "code::after": {
+                            content: "",
+                        },
+                        "blockquote p:first-of-type::before": {
+                            content: "",
+                        },
+                        "blockquote p:last-of-type::after": {
+                            content: "",
+                        },
+                    },
+                },
+            },
+        },
     },
-  },
-  plugins: [],
-}
+    plugins: [require("@tailwindcss/typography")],
+};
