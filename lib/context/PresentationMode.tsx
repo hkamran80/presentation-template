@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { PresentationMode } from "../constants";
-import { FullScreen } from "@chiragrupani/fullscreen-react";
+// import { FullScreen } from "@chiragrupani/fullscreen-react";
 import { useIsClient } from "usehooks-ts";
+import dynamic from "next/dynamic";
 
 export const ModeContext = createContext({
     mode: PresentationMode.Slideshow,
@@ -20,6 +21,24 @@ export const ModeProvider = ({ children }: Props) => {
 
     const isClient = useIsClient();
 
+    const FullScreen = useMemo(
+        () =>
+            dynamic<{
+                onChange: (isFullScreenEnabled: boolean) => void;
+                isFullScreen: boolean;
+                children?: React.ReactNode;
+            }>(
+                () =>
+                    import("@/components/FullScreen").then(
+                        (fs) => fs.FullScreen,
+                    ),
+                {
+                    ssr: false,
+                },
+            ),
+        [],
+    );
+
     useEffect(() => {
         if (newMode) {
             if (newMode.toLowerCase() === "slideshow") {
@@ -34,7 +53,7 @@ export const ModeProvider = ({ children }: Props) => {
         <ModeContext.Provider
             value={{ mode, setMode, fullScreen, setFullScreen }}
         >
-            {typeof window !== "undefined" ? (
+            {isClient ? (
                 <FullScreen
                     isFullScreen={fullScreen}
                     onChange={(isFullScreen) => {
@@ -44,7 +63,7 @@ export const ModeProvider = ({ children }: Props) => {
                     {children}
                 </FullScreen>
             ) : (
-                "Loading..."
+                children
             )}
         </ModeContext.Provider>
     );
