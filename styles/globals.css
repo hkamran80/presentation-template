@@ -2,47 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    @apply bg-black text-white;
+@layer base {
+    html {
+        @apply bg-black text-white;
 
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #slide {
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+
+        width: 100vw;
+        height: 100vh;
+        padding: 1rem;
+
+        text-align: center;
+
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
-#slide {
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
+@layer components {
+    .no-margin {
+        @apply m-0;
+    }
 
-    width: 100vw;
-    height: 100vh;
-    padding: 1rem;
+    div:not(.override) > #slide p,
+    div:not(.override) > #slide ul,
+    div:not(.override) > #slide div {
+        @apply text-3xl mb-6 leading-10 font-extralight;
+    }
 
-    text-align: center;
+    div:not(.override) > #slide ul {
+        @apply list-disc list-inside space-y-2;
+    }
 
-    -webkit-overflow-scrolling: touch;
-}
-
-#slide p,
-#slide ul,
-#slide div {
-    @apply text-3xl mb-6 leading-10 font-extralight;
-}
-
-#slide ul {
-    @apply list-disc list-inside space-y-2;
-}
-
-div:not(.override) > .slide-title {
-    @apply text-6xl font-bold tracking-[-0.02em] text-pink-700 drop-shadow-sm md:text-7xl md:leading-[8rem] mb-7;
-}
-div:not(.override) > .slide-h2 {
-    @apply text-5xl font-bold tracking-[-0.02em] text-pink-700 drop-shadow-sm md:text-6xl md:leading-[6rem] mb-7;
-}
-div:not(.override) > .subheader {
-    @apply text-3xl font-bold tracking-[-0.02em] text-pink-700 drop-shadow-sm md:text-4xl md:leading-[6rem] mb-5;
+    div:not(.override) > .slide-title {
+        @apply text-6xl font-bold tracking-[-0.02em] text-pink-700 drop-shadow-sm md:text-7xl md:leading-[8rem];
+    }
+    div:not(.override) > .slide-h2 {
+        @apply text-5xl font-bold tracking-[-0.02em] text-pink-700 drop-shadow-sm md:text-6xl md:leading-[6rem] mb-7;
+    }
+    div:not(.override) > .subheader {
+        @apply text-3xl font-bold tracking-[-0.02em] text-pink-700 drop-shadow-sm md:text-4xl md:leading-[6rem] mb-5;
+    }
+    div:not(.override) > .subheader.no-bottom {
+        @apply mb-0;
+    }
 }
