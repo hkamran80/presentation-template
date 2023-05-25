@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@chiragrupani/fullscreen-react': ^1.2.5
   '@hkamran/prettier-config': ^1.1.1
   '@hkamran/utility-web': ^1.0.2
   '@tailwindcss/typography': ^0.5.9
@@ -25,6 +26,7 @@ specifiers:
   usehooks-ts: ^2.9.1
 
 dependencies:
+  '@chiragrupani/fullscreen-react': 1.2.5_biqbaboplfbrettd7655fr4n2y
   '@hkamran/utility-web': 1.0.2
   framer-motion: 10.12.10_biqbaboplfbrettd7655fr4n2y
   lucide-react: 0.216.0_react@18.2.0
@@ -63,6 +65,16 @@ packages:
     dependencies:
       regenerator-runtime: 0.13.11
     dev: true
+
+  /@chiragrupani/fullscreen-react/1.2.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-J2Da01MLgHL7bE1UzIMQNtxZgcrZaBLXrRuw8BL6u5pLtSD3qBgqZb4W2CeFTFZyl1R+irazYzo9smAT6j2WEg==}
+    peerDependencies:
+      react: '>=17.0'
+      react-dom: '>=17.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@emotion/is-prop-valid/0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}

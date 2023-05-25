@@ -1,7 +1,11 @@
 import Slide from "./Slide";
 import Swipeable from "./Swipeable";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { nextSlideKeys, PresentationMode } from "@/lib/constants";
+import {
+    fullScreenKey,
+    nextSlideKeys,
+    PresentationMode,
+} from "@/lib/constants";
 import { useCurrentSlide } from "@/lib/context/CurrentSlide";
 import { useEffect } from "react";
 import { useEventListener } from "usehooks-ts";
@@ -29,7 +33,7 @@ const SlidePage = ({
         clearSteps,
     } = useCurrentSlide();
     const router = useRouter();
-    const { mode, setMode } = useMode();
+    const { mode, setMode, fullScreen, setFullScreen } = useMode();
 
     let slideCount = slides.length;
 
@@ -41,6 +45,8 @@ const SlidePage = ({
                 navigate("previous");
             } else if (nextSlideKeys.includes(key)) {
                 navigate("next");
+            } else if (key === fullScreenKey) {
+                setFullScreen(!fullScreen);
             }
         }
     };
