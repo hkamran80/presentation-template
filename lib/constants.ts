@@ -4,3 +4,4 @@ export enum PresentationMode {
 }
 
 export const nextSlideKeys = ["Enter", "Backspace", "ArrowRight"];
+export const fullScreenKey = "f"

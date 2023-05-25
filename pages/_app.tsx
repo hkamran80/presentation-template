@@ -15,69 +15,73 @@ export default function App({ Component, pageProps }: AppProps) {
     if (isClient) {
         return (
             <>
-                    <ModeProvider>
-                <CurrentSlideProvider>
-                    <AnimatePresence mode="wait">
-                        <Head>
-                            <title>{presentationConfiguration.title}</title>
+                <ModeProvider>
+                    <CurrentSlideProvider>
+                        <AnimatePresence mode="wait">
+                            <Head>
+                                <title>{presentationConfiguration.title}</title>
 
-                            {presentationConfiguration.author ? (
-                                <>
-                                    <meta
-                                        name="author"
-                                        content={
-                                            presentationConfiguration.author
-                                                .name
-                                        }
-                                    />
-                                    <meta
-                                        name="copyright"
-                                        content={
-                                            presentationConfiguration.author
-                                                .name
-                                        }
-                                    />
-                                </>
-                            ) : null}
-                        </Head>
+                                {presentationConfiguration.author ? (
+                                    <>
+                                        <meta
+                                            name="author"
+                                            content={
+                                                presentationConfiguration.author
+                                                    .name
+                                            }
+                                        />
+                                        <meta
+                                            name="copyright"
+                                            content={
+                                                presentationConfiguration.author
+                                                    .name
+                                            }
+                                        />
+                                    </>
+                                ) : null}
+                            </Head>
 
-                        <NextSeo
-                            title={presentationConfiguration.title}
-                            description={presentationConfiguration.description}
-                            canonical={presentationConfiguration.canonicalLink}
-                            openGraph={{
-                                url: presentationConfiguration.canonicalLink,
-                                title: presentationConfiguration.title,
-                                description:
-                                    presentationConfiguration.description,
-                                siteName: presentationConfiguration.title,
-                            }}
-                            twitter={{
-                                handle: presentationConfiguration.author
-                                    ?.twitter,
-                                cardType: "summary",
-                            }}
-                        />
+                            <NextSeo
+                                title={presentationConfiguration.title}
+                                description={
+                                    presentationConfiguration.description
+                                }
+                                canonical={
+                                    presentationConfiguration.canonicalLink
+                                }
+                                openGraph={{
+                                    url: presentationConfiguration.canonicalLink,
+                                    title: presentationConfiguration.title,
+                                    description:
+                                        presentationConfiguration.description,
+                                    siteName: presentationConfiguration.title,
+                                }}
+                                twitter={{
+                                    handle: presentationConfiguration.author
+                                        ?.twitter,
+                                    cardType: "summary",
+                                }}
+                            />
 
-                        <Component {...pageProps} />
-                    </AnimatePresence>
-                </CurrentSlideProvider>
-            </ModeProvider>
+                            <Component {...pageProps} />
+                        </AnimatePresence>
+                    </CurrentSlideProvider>
+                </ModeProvider>
 
-            {process.env.NODE_ENV === "development" ||
-            typeof window === "undefined" ? (
-                ""
-            ) : (
-                <Script
-                    async
-                    defer
-                    data-website-id="bcc044a5-d319-4e4d-8578-290eb68f9bde"
-                    src="https://umami.unisontech.org/script.js"
-                />
-            )}
+                {process.env.NODE_ENV === "development" ||
+                typeof window === "undefined" ? (
+                    ""
+                ) : (
+                    <Script
+                        async
+                        defer
+                        data-website-id="bcc044a5-d319-4e4d-8578-290eb68f9bde"
+                        src="https://umami.unisontech.org/script.js"
+                    />
+                )}
             </>
         );
     } else {
-        return <Component {...pageProps} />;
+        return "Loading...";
     }
 }
