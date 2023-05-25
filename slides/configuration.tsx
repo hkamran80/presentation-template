@@ -4,8 +4,11 @@ import SlideTitle from "./Title";
 import type { SlidePageProps } from "@/types/SlidePage";
 import type { PresentationConfig } from "@/types/PresentationConfig";
 
-/* eslint-disable react/jsx-key */
-export const slides = [<SlideTitle />, <SlideListExample />, <SlideDemo />];
+export const slides = [
+    <SlideTitle key={0} />,
+    <SlideListExample key={1} />,
+    <SlideDemo key={2} />,
+];
 
 export const slideConfiguration: SlidePageProps = {
     header: <span className="uppercase tracking-wider">Demo Presentation</span>,
